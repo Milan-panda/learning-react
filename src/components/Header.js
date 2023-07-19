@@ -1,4 +1,9 @@
-import React from "react";
+import React, { useState } from "react";
+
+const loggedInUser = () => {
+  // API call to check authentication
+  return false;
+};
 
 const Title = () => {
   return (
@@ -15,19 +20,27 @@ const Title = () => {
 };
 
 const Header = () => {
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
+
   return (
     <div className="header">
-    <Title />
-    <div className="nav-items">
-      <ul>
-        <li>Name</li>
-        <li>About</li>
-        <li>Contact</li>
-        <li>Cart</li>
-      </ul>
+      <Title />
+      <div className="nav-items">
+        <ul>
+          <li>Name</li>
+          <li>About</li>
+          <li>Contact</li>
+          <li>Cart</li>
+        </ul>
+      </div>
+
+      {isLoggedIn ? (
+        <button onClick={() => setIsLoggedIn(false)}>Logout</button>
+      ) : (
+        <button onClick={() => setIsLoggedIn(true)}>Login</button>
+      )}
     </div>
-  </div>
-  )
-}
+  );
+};
 
 export default Header;
