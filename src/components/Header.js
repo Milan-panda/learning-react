@@ -17,7 +17,7 @@ const Title = () => {
   return (
     <a href="/">
       <img
-        className="logo"
+        className="h-28 p-2"
         src="https://scontent.fdel1-4.fna.fbcdn.net/v/t39.30808-6/302275887_487537640050648_5998956273504369200_n.jpg?_nc_cat=107&ccb=1-7&_nc_sid=09cbfe&_nc_ohc=y7Cac0hyKP4AX9-v3qG&_nc_ht=scontent.fdel1-4.fna&oh=00_AfAYiqpRILouTe_MNow4p2UJwmnJFCoVqoiMQ3lEA1r96A&oe=64B3F82E"
         alt="logo"
       />
@@ -30,27 +30,27 @@ const Header = () => {
   const isOnline = useOnline();
 
   return (
-    <div className="header">
+    <div className="flex justify-between bg-pink-50 shadow-lg sm:bg-blue-50">
       <Title />
       <div className="nav-items">
-        <ul>
-          <li>
+        <ul className="flex py-10">
+          <li className="px-2">
             <Link to="/">Home</Link>
           </li>
-          <li>
+          <li className="px-2">
             <Link to="/about">About</Link>
           </li>
-          <li>
+          <li className="px-2">
             <Link to="/contact">Contact</Link>
           </li>
-          <li>
+          <li className="px-2">
             <Link to="/instamart">Instamart</Link>
           </li>
-          <li>Cart</li>
+          <li className="px-2">Cart</li>
         </ul>
       </div>
 
-      <h1>{(isOnline)? "🟢" : "🔴"}</h1>
+      <h1>{isOnline ? "🟢" : "🔴"}</h1>
 
       {isLoggedIn ? (
         <button onClick={() => setIsLoggedIn(false)}>Logout</button>
