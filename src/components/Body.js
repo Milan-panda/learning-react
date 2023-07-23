@@ -1,16 +1,18 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useContext } from "react";
 import { RestaurantList } from "../constants";
 import RestaurantCard from "./RestaurantCard";
 import Shimmer from "./Shimmer";
 import { Link } from "react-router-dom";
 import { filterData } from "../../utils/helper";
 import useOnline from "../../utils/useOnline";
+import UserContext from "../../utils/UserContext";
 
 
 const Body = () => {
   const [allRestaurants, setAllRestaurants] = useState([]);
   const [filteredRestaurants, setFilteredRestaurants] = useState([]);
   const [searchText, setSearchText] = useState(""); // * to create state variable
+  const {user, setUser} = useContext(UserContext)
 
   // * empty dependency array => once after render
   // * dep. array [searchText] => once after render + every time after render (my searchText changes)
@@ -67,6 +69,14 @@ const Body = () => {
         >
           Search
         </button>
+        <input className="mx-2" value={user.name} onChange={e => setUser({
+          ...user,
+          name: e.target.value,
+        })}/>
+        <input className="mx-2" value={user.email} onChange={e => setUser({
+          ...user,
+          email: e.target.value,
+        })}/>
       </div>
       <div className="flex flex-wrap">
         {filteredRestaurants?.length === 0 ? (
