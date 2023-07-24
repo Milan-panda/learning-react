@@ -10,6 +10,9 @@ import RestaurantMenu from "./components/RestaurantMenu";
 import Profile from "./components/Profile";
 import Shimmer from "./components/Shimmer";
 import UserContext from "../utils/UserContext";
+import { Provider } from "react-redux";
+import store from "../utils/store";
+import Cart from "./components/Cart";
 
 // Chunking
 // Code Splitting
@@ -28,15 +31,17 @@ const AppLayout = () => {
   });
 
   return (
-    <UserContext.Provider value={{ user: user, setUser: setUser }}>
-      <Header />
-      {/* <About/> //! If my path is /about
+    <Provider store={store}>
+      <UserContext.Provider value={{ user: user, setUser: setUser }}>
+        <Header />
+        {/* <About/> //! If my path is /about
       <Body /> //! If my path is /
       <Contact /> //! If my path is /contact
        */}
-      <Outlet />
-      <Footer />
-    </UserContext.Provider>
+        <Outlet />
+        <Footer />
+      </UserContext.Provider>
+    </Provider>
   );
 };
 
@@ -79,6 +84,10 @@ const appRouter = createBrowserRouter([
             <Instamart />
           </Suspense>
         ),
+      },
+      {
+        path: "/cart",
+        element: <Cart/>
       },
     ],
   },
